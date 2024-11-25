@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary .text-ligth bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="#">
+                <i class="fa-solid fa-bus"></i> RED_TRAVELS
+            </a>
+            
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active text-white" aria-current="page" href="#"><i class="fa-solid fa-house"></i>Home</a>
+              <a class="nav-link text-white" href="#"><i class="fa-solid fa-money-bill"></i>packages</a>
+              <a class="nav-link text-white" href="#"><i class="fa-solid fa-globe"></i>About_us</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+
+
+
+
+
+    <div class="row">
+        <div class="col d-flex justify-content-center mt-2">
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{% static 'images/agra.jpg' %}" class="d-block w-100" style="height: 300px;width:51%">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'images/new york.jpg' %}" class="d-block w-100" style="height: 300px;width:51%">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'images/uk.jpg' %}" class="d-block w-100" style="height: 300px;width:51%">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5"> 
+        <div class="row">
+            {% for x in bo %}
+                <div class="col-md-4 col-4 mt-4"> <!-- This column will take up 4 out of 12 spaces in a row -->
+                    <div class="card">
+                        <div class="bg-image hover-zoom">
+                            <a href="{% url 'package_detail' pk=x.id %}">
+                            <img src="{{ x.image.url }}" class="card-img-top" alt="{{ x.name }}" style="height:400px;">
+                        </div></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ x.name }}</h5>
+                            <p>{{ x.activities }}</p>
+                            <p>Guide_name: {{ x.guide_name }}</p>
+                            <p class="mb-4">Period:{{ x.days }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div> 
+    </div> 
+    <footer class="bg-primary">
+        <h1 style="text-align: center;" class=".text-ligth"><i class="fa-solid fa-copyright">copyrigthsreserved</i></h1>
+    </footer> 
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
